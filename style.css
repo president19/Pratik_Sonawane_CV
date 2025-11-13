@@ -1,0 +1,65 @@
+/* ---------- Skills ticker (continuous scroll) ---------- */
+.skills-ticker {
+  margin: 24px 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  padding: 8px 0;
+}
+
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  outline: none;
+}
+
+.ticker {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  white-space: nowrap;
+  animation: scroll-left 20s linear infinite;
+  will-change: transform;
+}
+
+.ticker-item {
+  flex: 0 0 auto;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #111;
+}
+
+.ticker-item a {
+  color: inherit;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #f4f4f4;
+  display: inline-block;
+  transition: background .18s, transform .18s;
+}
+
+.ticker-item a:hover,
+.ticker-item a:focus {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.ticker-wrap:hover .ticker,
+.ticker-wrap:focus .ticker {
+  animation-play-state: paused;
+}
+
+@media (max-width: 520px) {
+  .ticker-item { font-size: 15px; }
+  .ticker { gap: 18px; }
+}
+
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

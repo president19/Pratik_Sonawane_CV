@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Me | CV</title>
+  <style>
+    /* ---------- PAGE LAYOUT ---------- */
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #fff; /* page background white */
+      color: #222;
+    }
+
+    /* ---------- NAVBAR (dark) ---------- */
+    .navbar {
+      background: #000; /* dark black */
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 12px;
+      z-index: 1000;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+    .navbar a:hover { background: rgba(255,255,255,0.08); }
+
+    /* ---------- CONTENT ---------- */
+    .content {
+      flex: 1;
+      padding: 110px 40px 40px; /* top padding leaves room for fixed navbar */
+      box-sizing: border-box;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .profile-row {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .profile-left {
+      max-width: 65%;
+    }
+
+    .profile-img {
+      text-align: right;
+    }
+    .profile-img img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    h1 { margin: 0 0 12px 0; font-size: 28px; }
+    p { margin: 0 0 18px 0; color: #444; line-height: 1.6; }
+
+    /* ---------- SKILLS: 4 MOVING LINES ---------- */
+    .skills-section {
+      margin-top: 1px;
+      border-radius: 1px;
+      padding: 12px;
+      background: #fafafa;
+      border: 1px solid #eee;
+    }
+
+    .skills-row {
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 10px 0;
+      position: relative;
+      /* allow pause on hover by row */
+    }
+
+    /* inner container that will be duplicated for seamless scroll */
+    .skills {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      animation: scroll-left var(--speed, 25s) linear infinite;
+      will-change: transform;
+    }
+
+    .skills span {
+      display: inline-block;
+      padding: 8px 14px;
+      background: #f1f1f1;
+      border-radius: 8px;
+      font-weight: 700;
+      color: #111;
+      transition: transform .18s, background .18s, color .18s;
+      cursor: default;
+      user-select: none;
+    }
+
+    .skills span:hover {
+      background: #111;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* pause animation on hover for accessibility */
+    .skills-row:hover .skills,
+    .skills-row:focus-within .skills {
+      animation-play-state: paused;
+    }
+
+    /* different speeds per row (set inline via style="--speed: 25s;") */
+    /* If you'd like alternate direction, change animation name and keyframes accordingly. */
+
+    /* ---------- KEYFRAMES ---------- */
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } /* -50% because we will duplicate content */
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #111;
+      color: #ddd;
+      text-align: center;
+      padding: 14px 10px;
+      margin-top: 24px;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 880px) {
+      .profile-row { flex-direction: column-reverse; align-items: center; text-align: center; gap: 14px; }
+      .profile-left { max-width: 100%; }
+      .profile-img img { width: 160px; height: 160px; }
+      .content { padding: 120px 18px 40px; }
+      .skills { gap: 14px; }
+      .skills span { font-size: 14px; padding: 7px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html">About</a>
+    <a href="project.html">Project</a>
+    <a href="resume.html">Resume</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- PAGE CONTENT -->
+  <main class="content">
+    <div class="profile-row">
+      <div class="profile-left">
+        <h1>About Me</h1>
+        <p>Hello! I’m Pratik — a web developer who loves building clean, functional web apps.
+           I focus on user experience, solid code, and learning new tools and cloud tech regularly.</p>
+      </div>
+
+      <div class="profile-img">
+        <!-- put img.jpg in same folder or change path here -->
+        <img src="img.jpeg" alt="Profile image of Pratik">
+      </div>
+    </div>
+
+    <!-- SKILLS: four moving rows -->
+    <section class="skills-section" aria-label="Skills">
+      <!-- Row 1 -->
+      <div class="skills-row" aria-hidden="false" tabindex="0">
+        <div class="skills" style="--speed: 20s;">
+          <span>Java</span><span>Python</span><span>SQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Node.js</span>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="skills-row" aria-hidden="false" tabindex="0">
+        <div class="skills" style="--speed: 24s;">
+          <span>MySQL</span><span>MongoDB</span><span>Docker</span><span>AWS</span><span>DevOps</span><span>Linux</span><span>Django</span><span>REST API</span>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="skills-row" aria-hidden="false" tabindex="0">
+        <div class="skills" style="--speed: 18s;">
+          <span>C++</span><span>Spring Boot</span><span>Express.js</span><span>Git</span><span>VS Code</span><span>Agile</span><span>OOP</span><span>Bootstrap</span>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="skills-row" aria-hidden="false" tabindex="0">
+        <div class="skills" style="--speed: 22s;">
+          <span>Machine Learning</span><span>Data Analysis</span><span>Firebase</span><span>GraphQL</span><span>Figma</span><span>Cloud Computing</span><span>API Testing</span><span>Jenkins</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Pratik. All rights reserved.
+  </footer>
+
+  <!-- Duplicate each .skills content once to make scroll seamless -->
+  <script>
+    (function () {
+      document.querySelectorAll('.skills').forEach(function (el) {
+        // clone inner HTML once for seamless scroll
+        el.innerHTML = el.innerHTML + el.innerHTML;
+      });
+    })();
+  </script>
+</body>
+</html>
